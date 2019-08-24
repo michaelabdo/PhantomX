@@ -3,9 +3,9 @@
 
 from tkinter import *
 from tkinter import ttk
-
+columns = ["column1", "column2", "column3", "column4"]
 class alphaFrame:
-
+    
     def __init__(self, Root):
         #sets size of window on open
         Root.geometry('600x400')
@@ -15,9 +15,15 @@ class alphaFrame:
         self.topFrame.pack(fill = BOTH)
         self.topFrame.config(relief = SOLID)
         
-        #button is defined as to use grid method
-        button = ttk.Button(self.topFrame, text = 'reset')
-        button.grid(row = 0, column = 0, columnspan = 1)
+        #Text input to take the input from user, each column relates to a physical column for the arm
+        
+        y = 0
+        for x in columns:
+            x = Text(self.topFrame, width = 10, height = 1)
+            x.grid(row = 0, column = y, columnspan = 1)
+            y = y + 1
+            
+        
         
         #Padding prevents frame from collapsing around button, err known on mac
         self.topFrame.config(padding = (30,50))
