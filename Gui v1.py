@@ -1,6 +1,11 @@
 #!/usr/bin/python3
 #Joshua Pierce
 
+#padding for the text boxes need to be spaced
+#debuging tool to tell user that there is an error with entry, what it is, how to fix it.(ie they put in letters, or same block twice)
+#link widgets to variables
+
+
 from tkinter import *
 from tkinter import ttk
 columns = ["column1", "column2", "column3", "column4"]
@@ -24,10 +29,9 @@ class alphaFrame:
             y = y + 1
             
         
-        
         #Padding prevents frame from collapsing around button, err known on mac
         self.topFrame.config(padding = (30,50))
-
+        
         #Frame defined as buffer for future dev, for visuals or other features, ignore or delete
         
         #self.middleFrame = ttk.Frame(Root)
