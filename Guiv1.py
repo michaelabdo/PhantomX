@@ -14,17 +14,14 @@ blocks = ["Block 1", "Block 2", "Block 3", "Block 4", "Block 5", "Block 6"]
 
 Spinboxes = []
 textEntries = []
+
+initialConfig = []
 #reset grid and values function
 def resetGrid():
     print('reset')
     for x in Spinboxes:
-
-        #x.selection_clear(self)
         x.delete(0,"end")
         x.insert(0,0)
-
-        #w.grid(,0)
-        #x.delete(first, last)
         print(x)
     textEntries.clear()
 
@@ -32,12 +29,38 @@ def resetGrid():
 def runArm():
     print('run arm')
     for x in Spinboxes:
-        textEntries.append(x.get('1.0', '1.1'))
-
-    for x in textEntries:
-        print("entry: " + x)
-
+        temp = x.get()
+        print(temp)
+    sortFunc()
     textEntries.clear()
+
+def sortFunc():
+    for x in reversed(Spinboxes):
+        Spinboxes
+        initialConfig.append(x.get())
+
+    tempArray = []
+    visited = [1, 1, 1, 1]
+    i = 0
+
+    for x in reversed(Spinboxes):
+        temp = int(x.get())
+        temp = temp - 1
+        print("Temp = ")
+        print(temp)
+
+        tempArray.append(visited[temp])
+        visited[temp] = visited[temp] + 1;
+        print("TempArray2 = ")
+        for i in tempArray:
+            print(i)
+    for x in reversed(Spinboxes):
+        temp = int(x.get())
+        print("Temp 2 = ")
+        print(temp)
+
+    #for y in tempArry (Y Axis)
+    #for x in revered(Spinboxes) - (Xaxis)
 
 class alphaFrame:
 
