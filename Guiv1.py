@@ -19,9 +19,13 @@ def resetGrid():
     print('reset')
     for x in Spinboxes:
 
-        x.clear()
+        #x.selection_clear(self)
+        x.delete(0,"end")
+        x.insert(0,0)
+
         #w.grid(,0)
         #x.delete(first, last)
+        print(x)
     textEntries.clear()
 
 #run arm(send values to text file for asp)
@@ -59,6 +63,7 @@ class alphaFrame:
                 #x.grid(row = z+1, column = y, columnspan = 1, padx = 10, pady = 10)
                 w = Spinbox(self.topFrame, from_= 0, to = 4)
                 w.grid(row = z+2, column = y+1, columnspan = 1, padx = 10, pady = 10)
+                Spinboxes.append(w)
                 y = y + 1
             y = 0
         y = 0
@@ -90,10 +95,10 @@ class alphaFrame:
         self.botomFrame.config(relief = SOLID)
 
         #future reset and run buttons
-        reset = ttk.Button(self.botomFrame, text = 'reset')
+        reset = ttk.Button(self.botomFrame, text = 'reset', command = resetGrid)
         reset.grid(row = 0, column = 0, columnspan = 1)
 
-        run = ttk.Button(self.botomFrame, text = 'run')
+        run = ttk.Button(self.botomFrame, text = 'run', command = runArm)
         run.grid(row = 0, column = 2, columnspan = 1)
         self.botomFrame.config(padding = (30,50))
 
