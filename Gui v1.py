@@ -16,22 +16,23 @@ class alphaFrame:
     
     def __init__(self, Root):
         #sets size of window on open
-        Root.geometry('600x400')
+        Root.geometry('500x500')
         
         #Frame is set to use Pack method, to fill space across with a border
         self.topFrame = ttk.Frame(Root)
         self.topFrame.pack(fill = BOTH)
         self.topFrame.config(relief = SOLID)
-        
+
+
+        y = 0
         #Text input to take the input from user, each column relates to a physical column for the arm
-        column1 = Text(self.topFrame, width = 10, height = 1)
-        column2 = Text(self.topFrame, width = 10, height = 1)
-        column3 = Text(self.topFrame, width = 10, height = 1)
-        column4 = Text(self.topFrame, width = 10, height = 1)
-        column1.grid(row = 1, column = 0, columnspan = 1, padx = 10, pady = 10)
-        column2.grid(row = 1, column = 1, columnspan = 1, padx = 10, pady = 10)
-        column3.grid(row = 1, column = 2, columnspan = 1, padx = 10, pady = 10)
-        column4.grid(row = 1, column = 3, columnspan = 1, padx = 10, pady = 10)
+
+        for z in range(6):
+            for x in range(4):
+                x = Text(self.topFrame, width = 10, height = 1)
+                x.grid(row = z+1, column = y, columnspan = 1, padx = 10, pady = 10)
+                y = y + 1
+            y = 0
         y = 0
 
         #loop to place all the labels for the columns above the input
