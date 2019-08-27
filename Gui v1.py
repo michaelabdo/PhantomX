@@ -12,8 +12,17 @@ import re
 
 columns = ["column 1", "column 2", "column 3", "column 4"]
 
+#reset grid and values function
+def resetGrid():
+    print('reset')
+
+#run arm(send values to text file for asp)
+def runArm():
+    print('run arm')
+    
 class alphaFrame:
     
+        
     def __init__(self, Root):
         #sets size of window on open
         Root.geometry('500x500')
@@ -62,10 +71,10 @@ class alphaFrame:
         self.botomFrame.config(relief = SOLID)
         
         #future reset and run buttons
-        reset = ttk.Button(self.botomFrame, text = 'reset')
+        reset = ttk.Button(self.botomFrame, text = 'reset', command = resetGrid)
         reset.grid(row = 0, column = 0, columnspan = 1)
         
-        run = ttk.Button(self.botomFrame, text = 'run')
+        run = ttk.Button(self.botomFrame, text = 'run', command = runArm)
         run.grid(row = 0, column = 2, columnspan = 1)
         self.botomFrame.config(padding = (30,50))
 
