@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 #Joshua Pierce
 
-#padding for the text boxes need to be spaced
+#padding for the text boxes need to be spaced (complete)
 #debuging tool to tell user that there is an error with entry, what it is, how to fix it.(ie they put in letters, or same block twice)
 #link widgets to variables
 
