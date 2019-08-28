@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#Joshua Pierce
+#Joshua Pierce, Michael Abdo, Arnav Nagpal
 
 #padding for the text boxes need to be spaced (complete)
 #debuging tool to tell user that there is an error with entry, what it is, how to fix it.(ie they put in letters, or same block twice)
@@ -34,6 +34,7 @@ def runArm():
     sortFunc()
     textEntries.clear()
 
+#function to sort the input into locations the asp program can use
 def sortFunc():
     for x in reversed(Spinboxes):
         Spinboxes
@@ -46,22 +47,46 @@ def sortFunc():
     for x in reversed(Spinboxes):
         temp = int(x.get())
         temp = temp - 1
-        print("Temp = ")
-        print(temp)
+        #print("Temp = ")
+        #print(temp)
 
         tempArray.append(visited[temp])
         visited[temp] = visited[temp] + 1;
-        print("TempArray2 = ")
-        for i in tempArray:
-            print(i)
+        #print("TempArray2 = ")
+        #for i in tempArray:
+            #print(i)
+    
+    #tempArray holds vertical position
+    print("vertical position")
+    for i in tempArray:
+        print(i)
+        
+    # is the horizontal position
+    print("horizontal position = ")
     for x in reversed(Spinboxes):
         temp = int(x.get())
-        print("Temp 2 = ")
         print(temp)
 
     #for y in tempArry (Y Axis)
     #for x in revered(Spinboxes) - (Xaxis)
 
+    #sends the following to print and a text file for reading by asp, i for block, r for y(reversed)
+    i = 1
+    r = 5
+    strTotal = ""
+    for x in Spinboxes:
+        strLine = "initCellHasBlock("+ str(tempArray[r]) +","+ x.get() + ","+ str(i) + ")."
+        strTotal = strTotal + strLine + "\n"
+        print(strLine)
+        i = i + 1
+        r = r - 1
+        
+    #the file handling, open to startingPosition.txt with write priveliges, write strTotal, close for asp use
+    file = open("startingPosition.txt", "w")
+    file.write(strTotal)
+    file.close()
+
+    
 class alphaFrame:
 
     def __init__(self, Root):
