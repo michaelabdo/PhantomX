@@ -84,7 +84,7 @@ def sortFunc():
     for x in (finalCol):
         temp = int(x.get())
         print(temp)
-        strTotal = strTotal + "GoalPlatform(" + str(temp) + ")." + "\n" 
+        strTotal = strTotal + "goalPlatform(" + str(temp) + ")." + "\n" 
 
     #the file handling, open to startingPosition.txt with write priveliges, write strTotal, close for asp use
     file = open("startingPosition.txt", "w")
