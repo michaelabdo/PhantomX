@@ -25,6 +25,10 @@ def resetGrid():
         x.insert(0,0)
         print(x)
     textEntries.clear()
+    for x in finalCol:
+        x.delete(0,"end")
+        x.insert(0,0)
+    
 
 #run arm(send values to text file for asp)
 def runArm():
