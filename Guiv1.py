@@ -84,7 +84,7 @@ def sortFunc():
     for x in (finalCol):
         temp = int(x.get())
         print(temp)
-        strTotal = strTotal + "goalPlatform(" + str(temp) + ")." + "\n" 
+        strTotal = strTotal + "GoalPlatform(" + str(temp) + ")." + "\n" 
 
     #the file handling, open to startingPosition.txt with write priveliges, write strTotal, close for asp use
     file = open("startingPosition.txt", "w")
@@ -116,23 +116,32 @@ class alphaFrame:
                 #x = Text(self.topFrame, width = 10, height = 1)
                 #x.grid(row = z+1, column = y, columnspan = 1, padx = 10, pady = 10)
                 w = Spinbox(self.topFrame, from_= 0, to = 4)
-                w.grid(row = z+2, column = y+1, columnspan = 1, padx = 10, pady = 10)
+                if x < 3:
+                    w.grid(row = z+2, column = x+1, columnspan = 1, padx = 10, pady = 10)
+                else:
+                    w.grid(row = z+4, column = y+1, columnspan = 1, padx = 10, pady = 10)
+                    y = y + 1
                 Spinboxes.append(w)
-                y = y + 1
             y = 0
         y = 0
-
+        z = 0
         #loop to place all the labels for the columns above the input
         for x in blocks:
             label = ttk.Label(self.topFrame, text = x)
-            label.grid(row = 1, column = y+1, columnspan = 1)
+            if y < 3:
+                label.grid(row = 1, column = y+1, columnspan = 1)
+            #elif y == 3:
+                #label.grid(row = 3, column = y+1-y, columnspan = 1)
+            else:
+                label.grid(row = 3, column = z+1, columnspan = 1)
+                z = z + 1
             y = y + 1
-
+            
         label2 = ttk.Label(self.topFrame, text = "Final Column")
-        label2.grid(row = 3, column = 0, columnspan = 1)
+        label2.grid(row = 6, column = 0, columnspan = 1)
         
         finalColumn = Spinbox(self.topFrame, from_= 0, to = 4)
-        finalColumn.grid(row = 3, column = 1, columnspan = 1)
+        finalColumn.grid(row = 6, column = 1, columnspan = 1)
         
         finalCol.append(finalColumn)
         
