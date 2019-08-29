@@ -14,6 +14,7 @@ blocks = ["Block 1", "Block 2", "Block 3", "Block 4", "Block 5", "Block 6"]
 
 Spinboxes = []
 textEntries = []
+finalCol = []
 
 initialConfig = []
 #reset grid and values function
@@ -80,12 +81,17 @@ def sortFunc():
         print(strLine)
         i = i + 1
         r = r - 1
-        
+    for x in (finalCol):
+        temp = int(x.get())
+        print(temp)
+        strTotal = strTotal + "GoalPlatform(" + str(temp) + ")." + "\n" 
+
     #the file handling, open to startingPosition.txt with write priveliges, write strTotal, close for asp use
     file = open("startingPosition.txt", "w")
     file.write(strTotal)
     file.close()
-
+    import os
+    os.system("clingo startingPosition.txt blocks_ASP_prog.lp")  
     
 class alphaFrame:
 
@@ -122,9 +128,14 @@ class alphaFrame:
             label.grid(row = 1, column = y+1, columnspan = 1)
             y = y + 1
 
-
-
-
+        label2 = ttk.Label(self.topFrame, text = "Final Column")
+        label2.grid(row = 3, column = 0, columnspan = 1)
+        
+        finalColumn = Spinbox(self.topFrame, from_= 0, to = 4)
+        finalColumn.grid(row = 3, column = 1, columnspan = 1)
+        
+        finalCol.append(finalColumn)
+        
         #Padding prevents frame from collapsing around button, err known on mac
         self.topFrame.config(padding = (30,50))
 
@@ -150,6 +161,7 @@ class alphaFrame:
         run.grid(row = 0, column = 2, columnspan = 1)
         self.botomFrame.config(padding = (30,50))
 
+        
 
 def main():
     root = Tk()
