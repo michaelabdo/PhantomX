@@ -93,6 +93,7 @@ def sortFunc():
     file.close()
     import os
     file = open("initial_config.txt", "w")
+    file.write("")
     file.close()
     os.system("clingo startingPosition.txt blocks_ASP_prog.lp >> initial_config.txt")
     os.system("rosrun pub publisher")
