@@ -28,6 +28,7 @@ def resetGrid():
 
 #run arm(send values to text file for asp)
 def runArm():
+    
     print('run arm')
     for x in Spinboxes:
         temp = x.get()
@@ -91,6 +92,8 @@ def sortFunc():
     file.write(strTotal)
     file.close()
     import os
+    file = open("initial_config.txt", "w")
+    file.close()
     os.system("clingo startingPosition.txt blocks_ASP_prog.lp >> initial_config.txt")
     os.system("rosrun pub publisher")
     
