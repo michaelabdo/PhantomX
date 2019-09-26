@@ -25,10 +25,6 @@ def resetGrid():
         x.insert(0,0)
         print(x)
     textEntries.clear()
-    for x in finalCol:
-        x.delete(0,"end")
-        x.insert(0,0)
-    
 
 #run arm(send values to text file for asp)
 def runArm():
@@ -95,7 +91,8 @@ def sortFunc():
     file.write(strTotal)
     file.close()
     import os
-    os.system("clingo startingPosition.txt blocks_ASP_prog.lp")  
+    os.system("clingo startingPosition.txt blocks_ASP_prog.lp >> initial_config.txt")
+    os.system("rosrun pub publisher")
     
 class alphaFrame:
 
