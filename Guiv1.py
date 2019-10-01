@@ -120,7 +120,7 @@ class alphaFrame:
             for x in range(6):
                 #x = Text(self.topFrame, width = 10, height = 1)
                 #x.grid(row = z+1, column = y, columnspan = 1, padx = 10, pady = 10)
-                w = Spinbox(self.topFrame, from_= 0, to = 4)
+                w = Spinbox(self.topFrame, from_= 0, to = 4,state = 'readonly')
                 if x < 3:
                     w.grid(row = z+2, column = x+1, columnspan = 1, padx = 10, pady = 10)
                 else:
