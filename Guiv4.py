@@ -28,7 +28,13 @@ def resetGrid():
         x.delete(0,"end")
         x.insert(0,0)
         x['state'] = 'readonly'
-        print(x)
+        
+    for x in finalCol:
+        x['state'] = 'normal'
+        x.delete(0,"end")
+        x.insert(0,0)
+        x['state'] = 'readonly'
+        
     textEntries.clear()
 
 #run arm(send values to text file for asp)
