@@ -203,11 +203,16 @@ def makeCanvasStart():
         for i in range(len(cFour)):
             GraphInt.create_rectangle(150, heightEquation(baseYAxis, i), 180, heightEquation(baseYAxis, i) + 30, fill=cFour[i][1])
             GraphInt.create_text(160,heightEquation(baseYAxis, i) + 20,text=cFour[i][0])
- 
+
+
+#defines the offsets in height when placing virtual blocks
 def heightEquation(height, offset):
     blockOff = 30 * offset
     spaceOff = 4 * offset
     return height - blockOff - spaceOff - 30
+
+
+#defines the view of the GUI, contains three frames, one 
 class alphaFrame:
 
     def __init__(self, Root):
@@ -220,16 +225,14 @@ class alphaFrame:
         self.topFrame.config(relief = SOLID)
 
 
-        y = 0
+        
         #Text input to take the input from user, each column relates to a physical column for the arm
-
+        y = 0
         for z in range(1):
             label = ttk.Label(self.topFrame, text = "Platforms")
             label.grid(row = 2, column = 0, columnspan = 1)
 
             for x in range(6):
-                #x = Text(self.topFrame, width = 10, height = 1)
-                #x.grid(row = z+1, column = y, columnspan = 1, padx = 10, pady = 10)
                 w = Spinbox(self.topFrame, from_= 0, to = 4, state = 'readonly')
                 if x < 3:
                     w.grid(row = z+2, column = x+1, columnspan = 1, padx = 10, pady = 10)
@@ -240,6 +243,7 @@ class alphaFrame:
             y = 0
         y = 0
         z = 0
+        
         #loop to place all the labels for the columns above the input
         for x in blocks:
             label = ttk.Label(self.topFrame, text = x)
@@ -252,7 +256,8 @@ class alphaFrame:
                 z = z + 1
             labels.append(label)
             y = y + 1
-            
+
+        #user selects the placement of the final column
         label2 = ttk.Label(self.topFrame, text = "Final Column")
         label2.grid(row = 6, column = 0, columnspan = 1)
         labelCol.append(label2)
@@ -262,18 +267,19 @@ class alphaFrame:
         
         finalCol.append(finalColumn)
         
-        #Padding prevents frame from collapsing around button, err known on mac
+        #Padding prevents frame from collapsing around button
         self.topFrame.config(padding = (30,50))
 
-        #Frame defined as buffer for future dev, for visuals or other features (err messages), ignore or delete
 
+
+        #Frame will show err messages
         self.middleFrame = ttk.Frame(Root)
         self.middleFrame.pack(fill = BOTH)
         self.middleFrame.config(relief = SOLID)
         label3 = ttk.Label(self.middleFrame, text = "")
         label3.grid(row = 0, column = 0, columnspan = 1)
         labelCol.append(label3)
-        #
+        
 
         self.middleFrame.config(padding = (15,15))
 
@@ -282,7 +288,7 @@ class alphaFrame:
         self.botomFrame.pack(fill = BOTH)
         self.botomFrame.config(relief = SOLID)
 
-        #future reset and run buttons
+        #reset, run and display setup buttons
         reset = ttk.Button(self.botomFrame, text = 'reset', command = resetGrid)
         reset.grid(row = 0, column = 0, columnspan = 1)
 
@@ -290,7 +296,7 @@ class alphaFrame:
         run.grid(row = 0, column = 2, columnspan = 1)
         
 
-        #showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = makeCanvasStart(Root))
+        
         showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = makeCanvasStart)
         showSetup.grid(row = 0, column = 4, columnspan = 1)
         self.botomFrame.config(padding = (30,50))
