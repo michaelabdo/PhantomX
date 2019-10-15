@@ -1,0 +1,11 @@
+clingo version 4.5.4
+Reading from startingPosition.txt ...
+Solving...
+Answer: 1
+moveCellCell(1,3,4,3,1) moveCellCell(2,1,3,1,2) moveCellCell(4,2,1,1,3) moveCellCell(5,2,2,2,1) moveCellCell(3,3,1,2,2) moveCellCell(7,2,1,3,2) moveCellCell(8,1,3,2,1) moveCellCell(6,2,4,2,2) moveCellCell(11,2,1,1,3) moveCellCell(9,3,2,3,1) moveCellCell(12,1,3,2,1) moveCellCell(10,3,1,2,4) moveCellCell(13,2,2,1,3) moveCellCell(14,1,2,3,1) moveCellCell(17,2,3,1,2) moveCellCell(15,2,4,2,3) moveCellCell(18,1,3,5,1) moveCellCell(16,1,4,4,1) moveCellCell(19,1,2,6,1) moveCellCell(0,1,2,2,1)
+SATISFIABLE
+
+Models       : 1+    
+Calls        : 1
+Time         : 8.854s (Solving: 7.70s 1st Model: 7.70s Unsat: 0.00s)
+CPU Time     : 8.610s
