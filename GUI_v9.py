@@ -405,7 +405,7 @@ class alphaFrame:
 
 
 
-        showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = makeCanvasStart)
+        showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = CanvasSetup)
         showSetup.grid(row = 0, column = 4, columnspan = 1, padx = 15)
 
         visSol = ttk.Button(self.botomFrame, text = 'view generated solution', command = CanvasSolution)
