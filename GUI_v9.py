@@ -66,7 +66,7 @@ def runArm():
 
     err = labelCol[1]
     if errhandle == 0:
-        err['text'] = ''
+        err['text'] = "Clingo: ASP program solving solution."
         sortFunc()
     else:
         err['text'] = errString
