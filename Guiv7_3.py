@@ -145,7 +145,7 @@ def CanvasSolution():
     
     scr = ttk.Scrollbar(window, orient=VERTICAL)
     MainCanvas = Canvas(window,scrollregion=(0, 0, 1000, 4600), yscrollcommand=scr.set)
-    MainFrame = Frame(MainCanvas)
+    MainFrame = Frame(MainCanvas, background="grey")
     scr['command'] = MainCanvas.yview
     
     MainCanvas.grid(column=0, row=0, sticky=(N,W,E,S))
@@ -163,9 +163,11 @@ def CanvasSolution():
     levOne = 0
     levTwo = 0
     levThree = 0
-    levFour = 0 
+    levFour = 0
+
+    #a loop to create a reference to where the blocks are currently positioned,
+    #that reference will be updated for future positions
     for x in reversed(Spinboxes):
-        
         CanvasRect.append(x.get())
 
         if int(x.get()) == 1:
@@ -183,10 +185,10 @@ def CanvasSolution():
         elif int(x.get()) == 4:
             levFour = levFour + 1
             itemArr.append([i,int(x.get()), levFour])
-        
-        
         i = i - 1
-    print(itemArr)
+        
+
+    #read from the generated solution, then split the solution into its steps, then sort the solution
     
     file = open("final_sol.txt", "r")
     movesArrRaw = file.read().split()
@@ -205,15 +207,19 @@ def CanvasSolution():
    
     movesArr.sort()
 
+
+    #make the inital canvas and use initial input 
     labelText = "Starting Position: "
     label = ttk.Label(MainFrame, text = labelText)
     label.grid(row = 0, column = 0, columnspan = 1)
     graphInt = Canvas(MainFrame, width=400, height=200)
-    graphInt.grid(row = 0, column = 1, columnspan = 1)
+    graphInt.grid(row = 0, column = 1, columnspan = 1, padx=(5,5), pady=(5,5))
     makeCanvasStart(graphInt)
     
     CanvasRect.clear()
-    
+
+    #through all the generated steps, all func to calc the new position,create a canvas,
+    #call func to draw the position of blocks
     for i in range(len(movesArr)):
         
         newPosition(movesArr[i], itemArr)
@@ -222,13 +228,19 @@ def CanvasSolution():
         label = ttk.Label(MainFrame, text = labelText)
         label.grid(row = i +1, column = 0, columnspan = 1)
         graphInt = Canvas(MainFrame, width=400, height=200)
-        graphInt.grid(row = i + 1, column = 1, columnspan = 1)
+        graphInt.grid(row = i + 1, column = 1, columnspan = 1, padx=(5,5), pady=(5,5))
         makeCanvasStart(graphInt)
         CanvasRect.clear()
         
-    
+    #this function keeps track of the positions of the blocks and then writes over a list
 def newPosition(armMov, currentPosB):
-    
+
+    #armMov has 5 values, one is irrelivent as it refers to the arm position
+    #two are block position before for height and column, and the other two
+    #are the next placements of the blocks.
+    #each block is from an array of where all the blocks are height and column,
+    #it compares where each block should be and for the next movments original position
+    #then it moves the blocks into the list CanvasRect in order to be drawn in the next canvas
     for block in currentPosB:
         if block[2] == armMov[1] and block[1] == armMov[2]:
             block[2] = armMov[3]
@@ -238,7 +250,8 @@ def newPosition(armMov, currentPosB):
     for block in currentPosB:
         CanvasRect.append(block[1])
     
-    
+
+    #defines the visual for the inital set up of the arm
 def CanvasSetup():
     window = Toplevel(root)
     window.title("Block Setup")
