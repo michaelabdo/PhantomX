@@ -59,7 +59,7 @@ def runArm(isRunArm):
             y = labels[count]
             errString = errString + "\t" + y['text'] + "\n"
             errhandle = -1
-            isArmRun = 2
+            
         else:
             x['fg'] = "black"
             y = labels[count]
@@ -71,7 +71,7 @@ def runArm(isRunArm):
             y = labelCol[0]
             errString = errString + "\t" + y['text'] + "\n"
             errhandle = -1
-            isArmRun = 2
+            
         else:
             x['fg'] = "black"
             y = labelCol[0]
