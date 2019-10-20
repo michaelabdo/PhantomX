@@ -168,7 +168,7 @@ def CanvasSolution():
     window.geometry('600x600')
     
     scr = ttk.Scrollbar(window, orient=VERTICAL)
-    MainCanvas = Canvas(window,scrollregion=(0, 0, 1000, 4750), yscrollcommand=scr.set)
+    MainCanvas = Canvas(window,scrollregion=(0, 0, 1000, 5000), yscrollcommand=scr.set)
     MainFrame = Frame(MainCanvas, background="lightgrey")
     scr['command'] = MainCanvas.yview
     
