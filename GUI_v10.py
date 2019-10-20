@@ -40,9 +40,15 @@ def resetGrid():
     err['text'] = ''
     textEntries.clear()
 
+
+def InitRunArm():
+
+    runArm(0)
+
 #run arm (send values to text file for asp), wont send if error,
 #will change colour of text regarding error or no error
-def runArm():
+def runArm(isRunArm):
+    
     errhandle = 0
     count = 0
     errString = "ERROR: Please change the following input(s) with values between 1 and 4: \n\n"
@@ -53,6 +59,7 @@ def runArm():
             y = labels[count]
             errString = errString + "\t" + y['text'] + "\n"
             errhandle = -1
+            isArmRun = 2
         else:
             x['fg'] = "black"
             y = labels[count]
@@ -64,6 +71,7 @@ def runArm():
             y = labelCol[0]
             errString = errString + "\t" + y['text'] + "\n"
             errhandle = -1
+            isArmRun = 2
         else:
             x['fg'] = "black"
             y = labelCol[0]
@@ -71,14 +79,18 @@ def runArm():
     err = labelCol[1]
     if errhandle == 0:
         err['text'] = "Clingo: ASP program solving solution."
-        sortFunc()
+        if isRunArm == 0:
+            err['text'] = err['text'] + "\nC++ program writing solution movments to arm..."
+        else:
+            err['text'] = err['text'] + "\nGUI program is generating visuals..."
+        sortFunc(isRunArm)
     else:
         err['text'] = errString
     textEntries.clear()
 
 #function to sort the input into locations the asp program can use
-def sortFunc():
-    global isRunArm
+def sortFunc(isRunArm):
+    
     
     for x in reversed(Spinboxes):
         Spinboxes
@@ -134,16 +146,22 @@ def sortFunc():
     file.close()
     print("blocks_ASP_prog.lp asp is beginning to find solution")
     os.system("clingo startingPosition.txt blocks_ASP_prog.lp >> final_sol.txt")
+    outputmsg = labelCol[1]
     if isRunArm == 0:
         os.system("rosrun pub publisher")
+        outputmsg['text'] = outputmsg['text'] + "\npublisher c++ code has finished"
+    else:
+        CanvasSolution()
+        outputmsg['text'] =  outputmsg['text'] + "\nVisuals complete."
 
+
+#run runArm() and sortfunc() from run arm without sending
+def IsCanvSolPossible():
+    runArm(1)
+    
 
 def CanvasSolution():
-    #run runArm() and sortfunc() from run arm without sending 
-    global isRunArm
-    isRunArm = 1
-    runArm()
-    isRunArm = 0
+    
     
     window = Toplevel(root)
     window.title("Block Solution")
@@ -412,15 +430,15 @@ class alphaFrame:
         reset = ttk.Button(self.botomFrame, text = 'reset', command = resetGrid)
         reset.grid(row = 0, column = 0, columnspan = 1, padx = 15)
 
-        run = ttk.Button(self.botomFrame, text = 'run', command = runArm)
+        run = ttk.Button(self.botomFrame, text = 'run', command = InitRunArm)
         run.grid(row = 0, column = 2, columnspan = 1, padx = 15)
 
 
 
-        showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = makeCanvasStart)
+        showSetup = ttk.Button(self.botomFrame, text = 'view setup', command = CanvasSetup)
         showSetup.grid(row = 0, column = 4, columnspan = 1, padx = 15)
 
-        visSol = ttk.Button(self.botomFrame, text = 'view generated solution', command = CanvasSolution)
+        visSol = ttk.Button(self.botomFrame, text = 'view generated solution', command = IsCanvSolPossible)
         visSol.grid(row = 0, column = 6, columnspan = 1, padx = 15)
         
         self.botomFrame.config(padding = (30,50))
