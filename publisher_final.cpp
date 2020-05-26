@@ -142,7 +142,7 @@ void vectorFill(std::vector<positions> &vect)
 	}
 
 	int count = 0;
-	positions pos;														//Struct object
+	positions pos;											//Struct object
 
 	for (std::string::size_type i = 0; i < fileCon.size(); i++)
 	{
@@ -151,10 +151,10 @@ void vectorFill(std::vector<positions> &vect)
 			count++;
 			if (count == 1)
 			{
-					pos.time = fileCon[i] - '0';  //Convert char to int
+					pos.time = fileCon[i] - '0';  					//Convert char to int
 					i++;
 					if (isdigit(fileCon[i]))
-						pos.time = (pos.time*10) + fileCon[i] - '0';			//If there is a second
+						pos.time = (pos.time*10) + fileCon[i] - '0';		//If there is a second
 			}																												//digit, append it
 			else if (count == 2)
 				pos.origLevel = fileCon[i] - '0';
@@ -170,13 +170,13 @@ void vectorFill(std::vector<positions> &vect)
 			}
 			else
 			{
-				std::cout << "ERROR - Count is not in range - line 153" << std::endl;
+				std::cout << "ERROR - Count is not in range" << std::endl;
 				exit(1);
 			}
 		}
 	}
 
-	std::sort(vect.begin(), vect.end(), less_than_key());				//Sorts the vector in
+	std::sort(vect.begin(), vect.end(), less_than_key());						//Sorts the vector in
 																															//regards to time movement
 	for (std::vector<positions>::iterator it = vect.begin(); it != vect.end(); ++it)
 	{																															//Prints out contents of the struct
